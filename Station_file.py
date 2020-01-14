@@ -21,15 +21,29 @@ for measurement in data:
     #if true add the selected dictionairy to json_dict
     if measurement['station'] == Seatle_station_code:
         json_list.append(measurement)
+
+    
 print(json_list)
         
-
 # Sum all the measurements of the location of Seatle for each month: create a list with the toal monthly precipation
 
+#create a list with 12 zeros: representing 12 empty buckets
+month_list = [0]*12
+
+#create a for loop to take action for each measurement
+for dic in json_list:
+    #select the month from the date
+    date = dic ['date']
+    correct = date.split ('-')
+    month = correct [1]
+ 
+    # sum all values of each month, 
+    month_list[int(month)-1] += dic['value']
+    
+#print the result
+print(month_list)
 
 
 # Save as a JSON file
-
-##store as a json file
-#with open('dictionairy_names.json', 'w') as file:
-    #json.dump(student_dict, file)
+with open('exercise1.json', 'w', encoding='utf8') as file:
+    json.dump(month_list, file)
