@@ -1,3 +1,7 @@
+
+
+# PART I
+
 # Look into the csv file for the Seatle station
 #Seattle,WA,GHCND:US1WAKG0038
 
@@ -44,6 +48,31 @@ for dic in json_list:
 print(month_list)
 
 
-# Save as a JSON file
+#Save as a JSON file
 with open('exercise1.json', 'w', encoding='utf8') as file:
     json.dump(month_list, file)
+
+
+#PART II: 
+
+# Calculating the sum of the whole year
+value_whole_year = sum(month_list)
+print(f'The precipation of Seatle of the whole year is {value_whole_year}')
+
+# Calculating the relative precipation per unt
+
+
+#  creating empty list to add the relative values per month
+rel_list = []
+
+for month_value in month_list:
+# to calculate the relative precipitation 
+    rel_list.append(month_value*100/value_whole_year)
+
+#print result
+print(rel_list)
+
+
+#Store result in jason file
+with open('relative_precipitation.json', 'w', encoding='utf8') as file:
+    json.dump(rel_list, file)
